@@ -14,7 +14,8 @@ public class EmployeeWageComp {
 	        final int WAGE_PER_HR = 20;
 	        final int MAX_WORKING_DAY_PER_MONTH = 20;
 	        
-	        for(int i = 1; i <= MAX_WORKING_DAY_PER_MONTH; i++) {	        
+	        for(int i = 1; i <= MAX_WORKING_DAY_PER_MONTH; i++) {	
+	        	System.out.println("Day: " +i);
 		        attendance = random.nextInt(9) % 2;
 		        switch (attendance) {
 		            case 0:
@@ -27,11 +28,12 @@ public class EmployeeWageComp {
 		                employee_type = random.nextInt(9) % 2;
 			                
 			            if (employee_type == 0) {
+			            	System.out.println("Part Time");
 			                dailyWage = dailyWage + (WAGE_PER_HR * PART_TIME_HR);
 			            } else {
+			            	System.out.println("Full Time");
 			                dailyWage = dailyWage + (WAGE_PER_HR * FULL_TIME_HR);
 			            }
-//			            System.out.println("The wage of Employee is: " +dailyWage);
 		                break;
 	
 		            default:
