@@ -9,13 +9,17 @@ public class EmployeeWageComp {
 	        int attendance;
 	        int employee_type;
 	        int dailyWage = 0;
+	        int total_wage = 0;
+	        int workingHr = 0;
+	        int workingDays = 1;
 	        final int PART_TIME_HR = 4;
 	        final int FULL_TIME_HR = 8;
 	        final int WAGE_PER_HR = 20;
 	        final int MAX_WORKING_DAY_PER_MONTH = 20;
+	        final int MAX_WORKING_HR = 100;
 	        
-	        for(int i = 1; i <= MAX_WORKING_DAY_PER_MONTH; i++) {	
-	        	System.out.println("Day: " +i);
+	        while((workingHr <= MAX_WORKING_HR) && (workingDays <= MAX_WORKING_DAY_PER_MONTH)) {
+	        	System.out.println("Day: " +workingDays);
 		        attendance = random.nextInt(9) % 2;
 		        switch (attendance) {
 		            case 0:
@@ -24,23 +28,30 @@ public class EmployeeWageComp {
 		            
 		            case 1:
 		                System.out.println("Present");
-		                
 		                employee_type = random.nextInt(9) % 2;
 			                
-			            if (employee_type == 0) {
-			            	System.out.println("Part Time");
-			                dailyWage = dailyWage + (WAGE_PER_HR * PART_TIME_HR);
-			            } else {
-			            	System.out.println("Full Time");
-			                dailyWage = dailyWage + (WAGE_PER_HR * FULL_TIME_HR);
+		                switch(employee_type) { 
+			            	case 0:
+				            	System.out.println("Employee is Part Time");
+				            	dailyWage = WAGE_PER_HR * PART_TIME_HR;
+				                workingHr += PART_TIME_HR;
+				                break;
+			            	case 1:
+				            	System.out.println("Employee is Full Time");
+				                dailyWage = WAGE_PER_HR * FULL_TIME_HR;
+				                workingHr += FULL_TIME_HR;
+				                break;
 			            }
+		                total_wage += dailyWage;
+		                System.out.println("Employee Wage: " +dailyWage);
 		                break;
 	
-		            default:
-		                System.out.println("Enter correct data!");
-		                break;
 		        }
+		        System.out.println("------------------");
+		        workingDays++;
 	        }    
-	        System.out.println("The wage of Employee is: " +dailyWage);
+	        System.out.println("The Total Working Days : " +(workingDays-1));
+		    System.out.println("The Total Working Hours: " +workingHr);
+	        System.out.println("The  wage of Employee is: " +total_wage);
 	    }
 }
